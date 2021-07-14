@@ -18,6 +18,9 @@ import java.util.stream.IntStream;
 
 @SpringBootApplication
 public class SpringbootallApplication {
+	/**
+	 * Command line runner code commented
+	 *
 	private static final Logger LOG = LoggerFactory.getLogger(SpringbootallApplication.class);
 
 	@Bean
@@ -64,7 +67,7 @@ public class SpringbootallApplication {
 
             LOG.info("Ending Command Line Runner ==> FIZZ BUZZ Application");
         };
-    }
+    }*/
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootallApplication.class, args);
