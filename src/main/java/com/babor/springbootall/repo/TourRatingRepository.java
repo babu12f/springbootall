@@ -2,6 +2,8 @@ package com.babor.springbootall.repo;
 
 import com.babor.springbootall.domain.TourRating;
 import com.babor.springbootall.domain.TourRatingPk;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
@@ -26,4 +28,13 @@ public interface TourRatingRepository extends CrudRepository<TourRating, TourRat
      * @return Optional of found TourRatings.
      */
     Optional<TourRating> findByPkTourIdAndPkCustomerId(Integer tourId, Integer customerId);
+
+    /**
+     * Fetch a Page of TourRatings
+     *
+     * @param tourId the tour identifier
+     * @param pageable info to determine page
+     * @return Page of Tour Ratings
+     */
+    Page<TourRating> findByPkTourId(Integer tourId, Pageable pageable);
 }
