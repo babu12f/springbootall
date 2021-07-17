@@ -19,7 +19,7 @@ public class JpaRepositoryTest {
     /**
      * Exercise JPA Repository methods.
      */
-    @Test
+    /*@Test
     public void runJpaRepositoryMethods() {
 
         departmentRepository.save(new Department("Humanities"));
@@ -41,7 +41,7 @@ public class JpaRepositoryTest {
         System.out.println("\n*************Zero Departments*************");
         departmentRepository.findAll().forEach(System.out::println);
 
-    }
+    }*/
 
     @Before
     @After

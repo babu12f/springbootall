@@ -14,11 +14,16 @@ public class Department {
     @Column
     private String name;
 
-    @OneToMany(mappedBy = "department", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne
+    private Staff chair;
+
+    @OneToMany(fetch = FetchType.EAGER,mappedBy="department",
+            cascade = CascadeType.ALL)
     private List<Course> courses = new ArrayList<>();
 
-    public Department(String name) {
+    public Department(String name, Staff chair) {
         this.name = name;
+        this.chair = chair;
     }
 
     protected Department() {
@@ -36,9 +41,24 @@ public class Department {
         courses.add(course);
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setChair(Staff chair) {
+        this.chair = chair;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
+
     @Override
     public String toString() {
-        return "Department{" + "id=" + id + ", name='" + name + '\'' +
-                ", courses=" + courses + '}';
+        return "Department{" +
+                "chair=" + chair +
+                ", name='" + name + '\'' +
+                ", id=" + id +
+                '}';
     }
 }
