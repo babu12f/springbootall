@@ -1,6 +1,8 @@
 package com.babor.springbootall;
 
+import com.babor.springbootall.domain.Course;
 import com.babor.springbootall.repo.CourseRepository;
+import com.babor.springbootall.view.CourseView;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +25,13 @@ public class DebuggingTest {
     @Test
     public void runtimeErrors() {
 
-//        Course course = courseRepository.findByDeptName("Sciences");
-//
-//        Course view = courseRepository.getCourseViewByName("English 101");
+        Course course = courseRepository.findByDepartmentName("Sciences");
+
+        CourseView view = courseRepository.getCourseViewByName("English 101").get();
+        view = courseRepository.getCourseViewByName("English 101").orElseThrow();
+        view = courseRepository.getCourseViewByName("English 100").orElse(
+                new CourseView("demon Course", "demon instructor", "dummy department")
+        );
 
     }
 
