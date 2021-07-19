@@ -19,11 +19,13 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         if(username.equals("admin")) {
             roles = Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
+            // password is admin
             return new User("admin", "$2y$12$I0Di/vfUL6nqwVbrvItFVOXA1L9OW9kLwe.1qDPhFzIJBpWl76PAe",
                     roles);
         }
         else if(username.equals("user")) {
             roles = Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+            // password is user
             return new User("user", "$2y$12$VfZTUu/Yl5v7dAmfuxWU8uRfBKExHBWT1Iqi.s33727NoxHrbZ/h2",
                     roles);
         }
