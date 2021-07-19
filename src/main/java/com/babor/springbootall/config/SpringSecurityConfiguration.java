@@ -26,7 +26,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
-
+    @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
@@ -47,7 +47,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests().antMatchers("/helloadmin").hasRole("ADMIN")
                 .antMatchers("/hellouser").hasAnyRole("USER","ADMIN")
-                .antMatchers("/authenticate").permitAll().anyRequest().authenticated()
+                .antMatchers("/authenticate", "/registeruser").permitAll().anyRequest().authenticated()
                 //if any exception occurs call this
                 .and().exceptionHandling()
                 .authenticationEntryPoint(jwtAuthenticationEntryPoint).and().

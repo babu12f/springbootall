@@ -4,6 +4,7 @@ import com.babor.springbootall.config.CustomUserDetailsService;
 import com.babor.springbootall.config.JwtUtil;
 import com.babor.springbootall.model.AuthenticationRequest;
 import com.babor.springbootall.model.AuthenticationResponse;
+import com.babor.springbootall.model.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -46,6 +47,11 @@ public class AuthenticationController {
         final String token = jwtTokenUtil.generateToken(userDetails);
 
         return ResponseEntity.ok(new AuthenticationResponse(token));
+    }
+
+    @RequestMapping(value = "/registeruser", method = RequestMethod.POST)
+    public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {
+        return ResponseEntity.ok(userDetailsService.save(user));
     }
 
 }
