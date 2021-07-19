@@ -1,4 +1,4 @@
-package com.babor.springbootall;
+package com.babor.springbootall.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
