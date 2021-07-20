@@ -1,6 +1,7 @@
 package com.babor.springbootall.config;
 
 import com.babor.springbootall.converters.StringToEnumConverter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -43,7 +44,7 @@ public class ApplicationConfig extends WebMvcConfigurationSupport {
         configurer.setTaskExecutor(mvcAsyncTaskExecutor());
     }
 
-    @Bean
+    @Bean("applicationAsyncTaskExecutor")
     public AsyncTaskExecutor mvcAsyncTaskExecutor() {
         ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
         threadPoolTaskExecutor.setThreadNamePrefix("SpringAll-App- ");
