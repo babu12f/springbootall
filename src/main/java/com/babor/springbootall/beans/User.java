@@ -1,17 +1,32 @@
 package com.babor.springbootall.beans;
 
+import net.bytebuddy.implementation.bind.annotation.Empty;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 public class User {
 
     @Id
     private int id;
+
+    @Size(min = 2, message = "{username.can.not.be.less.than.two.character}")
     private String username;
+
+    @Pattern(regexp = "((?=.*[A-Z]).{6,10})", message = "Password must have One Upper case, one lower case, " +
+            "and should be 6 to 10 character long")
     private String password;
     private String gender;
+
+    @NotNull(message = "Activity cannot be left empty")
     private String activity;
+
+    @NotEmpty(message = "First name cant be empty")
     private String firstName;
     private String lastName;
     private String dateOfBirth;

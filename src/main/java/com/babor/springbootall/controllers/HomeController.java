@@ -11,6 +11,11 @@ import java.util.List;
 @Controller
 public class HomeController {
 
+    @GetMapping("/")
+    public String getRoot() {
+        return "index";
+    }
+
     @GetMapping("/home")
     public String getHome() {
         return "index";
