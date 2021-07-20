@@ -27,9 +27,9 @@ public class LoginController {
         return "search";
     }
 
-    @ExceptionHandler(ApplicationException.class)
+    /*@ExceptionHandler(ApplicationException.class)
     public String handleException() {
         System.out.println("in the login exception handler");
         return "error";
-    }
+    }*/
 }
