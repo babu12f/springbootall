@@ -4,8 +4,10 @@ import com.babor.springbootall.converters.StringToEnumConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.format.Formatter;
+import org.springframework.core.task.AsyncTaskExecutor;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.web.servlet.config.annotation.AsyncSupportConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -34,4 +36,18 @@ public class ApplicationConfig extends WebMvcConfigurationSupport {
     protected void addFormatters(FormatterRegistry registry) {
         registry.addConverter(new StringToEnumConverter());
     }
+
+    @Override
+    protected void configureAsyncSupport(AsyncSupportConfigurer configurer) {
+        configurer.setDefaultTimeout(10000);
+        configurer.setTaskExecutor(mvcAsyncTaskExecutor());
+    }
+
+    @Bean
+    public AsyncTaskExecutor mvcAsyncTaskExecutor() {
+        ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
+        threadPoolTaskExecutor.setThreadNamePrefix("SpringAll-App- ");
+        return threadPoolTaskExecutor;
+    }
+
 }
